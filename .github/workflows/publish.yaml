@@ -1,0 +1,23 @@
+name: "Publish"
+on:
+  # Run only when pushing to master branch
+  push:
+    branches:
+      - main
+jobs:
+  emanote:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v2
+      - name: Build emanote site 🔧
+        run: |
+          mkdir -p docs/.ci/output
+          docker run -e LANG=C.UTF-8 -e LC_ALL=C.UTF-8 -v $PWD/docs:/data sridca/emanote emanote --layers /data gen /data/.ci/output
+          cp -r docs/.ci .
+          bash ./.ci/output/_emanote-bin/compile-css
+      - name: Deploy to gh-pages 🚀
+        uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: .ci/output
+          # cname: yoursite.com (if setting this, adjust .deploy/github/index.yaml accordingly; see README.md)

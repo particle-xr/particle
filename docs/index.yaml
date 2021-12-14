@@ -1,0 +1,8 @@
+page:
+  siteTitle: Particle
+
+template:
+  theme: red
+  sidebar:
+    collapsed: false
+  urlStrategy: pretty
