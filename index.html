@@ -4,24 +4,24 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    My Emanote Site
+    Particle
   </title>
   
     
       <meta property='og:description' content />
-      <meta property='og:site_name' content='My Emanote Site' />
+      <meta property='og:site_name' content='Particle' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='My Emanote Site' />
+      <meta property='og:title' content='Particle' />
     
     
-      <base href='particle' />
+      <base href='/' />
       <link href='favicon.svg' rel='icon' />
     
     <meta name='generator' content='Emanote' />
 
   
   <!-- CSSSTART -->
-	<link rel="stylesheet" href="emanote-compiled-d82c918b989466d0e74b7a84e66f3c19.css" />
+	<link rel="stylesheet" href="emanote-compiled-963a8af5154f4cb1912dd651bd3299c8.css" />
   <!-- CSSEND -->
 
   <!-- Heist error element -->
@@ -88,7 +88,7 @@
         
       </ul>
     </div>
-    <button class='inline px-2 py-1 text-white bg-blue-600 outline-none cursor-pointer focus:outline-none' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
+    <button class='inline px-2 py-1 text-white bg-red-600 outline-none cursor-pointer focus:outline-none' title='Toggle sidebar' type='button' onclick="toggleHidden('sidebar')">
       <svg xmlns='http://www.w3.org/2000/svg' class='w-4' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 6h16M4 12h16M4 18h16'></path>
       </svg>
@@ -107,14 +107,14 @@
           <div class='px-2 py-2 text-gray-800'>
 
             <div id='indexing-links' class='flex flex-row float-right p-2 space-x-2 text-gray-500'>
-              <a href='-/tags.html' title='View tags'>
-                <svg style='width: 1rem;' class='hover:text-blue-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+              <a href='-/tags' title='View tags'>
+                <svg style='width: 1rem;' class='hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
                   <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
                   </path>
                 </svg>
               </a>
-              <a href='-/all.html' title='Expand full tree'>
-                <svg style='width: 1rem;' class='hover:text-blue-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+              <a href='-/all' title='Expand full tree'>
+                <svg style='width: 1rem;' class='hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
                   <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
                   </path>
                 </svg>
@@ -141,45 +141,6 @@
             </div>
 
             
-              <!-- Variable bindings for this tree-->
-  
-    
-  
-
-
-
-  
-  
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-4 h-4 flex-shrink-0 inline text-gray-500' viewBox='0 0 20 20' fill='currentColor'>
-        <path d='M2 6a2 2 0 012-2h5l2 2h5a2 2 0 012 2v6a2 2 0 01-2 2H4a2 2 0 01-2-2V6z'></path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='docs' href='docs.html'>
-      docs
-    </a>
-    
-      
-        <span class='text-gray-300' title='1 children inside'>
-          1
-        </span>
-      
-    
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-</div>
-            
 
           </div>
         </nav>
@@ -187,25 +148,13 @@
         <!-- Main body column -->
         <div class='flex-1 w-full overflow-x-auto bg-white'>
           <main class='px-4 py-4'>
-            <h1 class='flex items-end justify-center mb-4 p-3 bg-blue-100 text-5xl font-extrabold text-black rounded'>
+            <h1 class='flex items-end justify-center mb-4 p-3 bg-red-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    My Emanote Site
+    Particle
   </a>
 </h1>
             <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
-  
-    <p class='mb-3'>
-      Welcome to <a href='https://note.ema.srid.ca/' class='text-blue-600 hover:underline' target='_blank' rel='noopener'>Emanote</a>.
-    </p>
-  
-    <p class='mb-3'>
-      Your notes should be visible in the sidebar (to the left), or in the <a href='-/all.html' class='text-blue-600 mavenLinkBold hover:underline'>index</a> page (see sidebar & footer). To get rid of this message, add a file named <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>index.md</code>.
-    </p>
-  
-    <p class='mb-3'>
-      <span class='font-bold bg-gray-100 py-0.5 px-2 rounded-lg emanote:inline-tag:emanote/default-layer' title='Tag' data-tag='emanote/default-layer'><a href='-/tags/emanote/default-layer.html' title='Tag' class='text-blue-600 mavenLinkBold hover:underline'>#emanote/default-layer</a></span>
-    </p>
   
   <!-- What goes in this file will appear below the note body-->
 </article>
@@ -215,12 +164,6 @@
             </div>
             
   <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
-    
-      <a title='Tag' class='px-1 bg-gray-100 rounded hover:bg-gray-50 hover:text-blue-500' href='-/tags/emanote/default-layer.html'>
-        <!-- DoNotFormat -->
-        #emanote/default-layer
-        <!-- DoNotFormat -->
-      </a>
     
   </section>
 
@@ -232,14 +175,14 @@
   
   <div>
     <a href='' title='Go to Home page'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-blue-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6'></path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='-/all.html' title='View Index'>
-      <svg class='w-6 h-6 hover:text-blue-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+    <a href='-/all' title='View Index'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
         </path>
       </svg>
@@ -247,20 +190,20 @@
   </div>
   <div>
     <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.4.2.0'>
-      <img class='w-6 h-6 hover:text-blue-700' src='_emanote-static/emanote-logo.svg' />
+      <img class='w-6 h-6 hover:text-red-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
   <div>
-    <a href='-/tags.html' title='View tags'>
-      <svg class='w-6 h-6 hover:text-blue-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+    <a href='-/tags' title='View tags'>
+      <svg class='w-6 h-6 hover:text-red-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
       </svg>
     </a>
   </div>
   <div>
-    <a href='-/tasks.html' title='View tasks'>
-      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-blue-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
+    <a href='-/tasks' title='View tasks'>
+      <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-red-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
     </a>
