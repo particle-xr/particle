@@ -2,7 +2,7 @@ page:
   siteTitle: Particle
 
 template:
-  theme: red
+  name: /templates/layouts/note
   sidebar:
-    collapsed: false
+    collapsed: true
   urlStrategy: pretty
