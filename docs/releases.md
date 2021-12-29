@@ -1,0 +1,6 @@
+# Releases
+
+---
+```query
+path:./*
+```

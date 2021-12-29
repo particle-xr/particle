@@ -3,7 +3,7 @@ title: In-world economics, using the Ethereum blockchain
 ---
 First of all, *free to play*. No questions asked.
 
-But, seeing as how this will be a realistic world (or maybe not), there will need to be an in-game currency. So here's the idea. Create a in-game crypto currency. [Can it be hosted *on* the Ethereum blockchain?] Worldlings will use it to pay for things in-world, e.g. transportation/teleportation fees, buy and sell things (weapons, vehicles, property, NFTs!), get pair for performing jobs, etc.
+But, seeing as how this will be a realistic world (or maybe not), there will need to be an in-game currency. So here's the idea. Create a in-game crypto currency. [Can it be hosted *on* the Ethereum blockchain?] Worldlings will use it to e.g. pay transportation/teleportation fees, buy and sell things (weapons, vehicles, property, NFTs!), get paid for performing jobs, earn it through quests, etc.
 
 Though, I like the idea of "not being able to pay money to get better <insert-whatever-here>"; no underdogs allowed. How could we accomplish that? We could just disallow it: there is no way to swap real currency for credits. But it would *also* be cool to create an in-game crypto which could then be traded on real-world crypto markets. Imagine: 10 years from now the most popular crypto currency is one you can only use in a game :laughing:.
 
