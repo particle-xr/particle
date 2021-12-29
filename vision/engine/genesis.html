@@ -7,14 +7,14 @@
   <meta charset='UTF-8' />
   <meta name='viewport' content='width=device-width, initial-scale=1' />
   <title>
-    In-world economics, using the Ethereum blockchain – Particle XR
+    Genesis state – Particle XR
   </title>
   
     
       <meta property='og:description' content />
       <meta property='og:site_name' content='Particle XR' />
       <meta property='og:type' content='website' />
-      <meta property='og:title' content='In-world economics, using the Ethereum blockchain' />
+      <meta property='og:title' content='Genesis state' />
     
     
       <base href='/particle/' />
@@ -92,8 +92,8 @@
             <li>
 
   <div class='text-gray-900 forest-link'>
-    <a href='vision/universe'>
-      Universe
+    <a href='vision/engine'>
+      Engine
     </a>
   </div>
 
@@ -140,26 +140,54 @@
             <main class='px-4 py-4'>
               <h1 class='flex items-end justify-center mb-4 p-3 bg-blue-100 text-5xl font-extrabold text-black rounded'>
   <a class='z-40 tracking-tighter '>
-    In-world economics, using the Ethereum blockchain
+    Genesis state
   </a>
 </h1>
               <article class='overflow-auto'>
   <!-- What goes in this file will appear on top of note body-->
   
     <p class='mb-3'>
-      First of all, <em>free to play</em>. No questions asked.
+      Genesis state will be a file used as the starting point for worlds. For example, the world of Arda will have a genesis state file <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>arda.genesis.xr</code>. Files using the <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>.xr</code> extension will be considered “world state files”. Such files will be binary files containing the compiled initial “shape” of the world.
     </p>
   
     <p class='mb-3'>
-      But, seeing as how this will be a realistic world (or maybe not), there will need to be an in-game currency. So here’s the idea. Create a in-game crypto currency. [Can it be hosted <em>on</em> the Ethereum blockchain?] Worldlings will use it to e.g. pay transportation/teleportation fees, buy and sell things (weapons, vehicles, property, NFTs!), get paid for performing jobs, earn it through quests, etc.
+      You can imagine that the workflow for creating worlds will thus be using either an IDE (akin to Unity and Unreal’s dedicated IDEs) or writing code that defines the world in terms of its elemental makeup. Once you are satisfied with your world, you will export the compiled .xr state file, thus creating the <em>genesis state</em>. When a world is first deployed, the genesis state file will be used to “bootstrap” the world.
     </p>
   
     <p class='mb-3'>
-      Though, I like the idea of “not being able to pay money to get better <span xmlhtmlRaw><insert-whatever-here></span>”; no underdogs allowed. How could we accomplish that? We could just disallow it: there is no way to swap real currency for credits. But it would <em>also</em> be cool to create an in-game crypto which could then be traded on real-world crypto markets. Imagine: 10 years from now the most popular crypto currency is one you can only use in a game <span class='emoji' data-emoji='laughing' style='font-family: emoji'>😆</span>.
+      Worlds can thus be created as one of two flavors:
     </p>
   
+    <ul class='my-3 ml-6 space-y-1 list-decimal list-inside'>
+      
+        <li>
+          Persistent worlds in which the genesis state is purely the “start of time”. Such worlds will then undergo transformations as time continues. Periodically, persistent worlds will export snapshots of themselves in the form of <code class='py-0.5 px-1 rounded bg-gray-700 text-sm text-white'>arda.TIMESTAMP.xr</code>. These files will thence be our way of persisting world state across e.g. deployments.
+        </li>
+      
+        <li>
+          Ephemeral (?) worlds in which the genesis state is used to bootstrap the world each time it is deployed. Such worlds will still undergo change over time, but these changes will <strong>not</strong> persist across deployments, sessions, etc. This world type might be suitable for personal chatrooms, in which the hoster:
+    <ul class='my-3 ml-6 space-y-1 list-disc'>
+      
+        <li>
+          does not wish to maintain a history of their simulation’s state, e.g. for cost reasons associated with the storage required to do so
+        </li>
+      
+        <li>
+          does not care about persistent state (for whatever reason)
+        </li>
+      
+        <li>
+          <em>wants</em> their simulation to be ephemeral, for example perhaps the integrity of the simulation hinges on the fact that it is exactly the same at the onset for every user (e.g. perhaps it is a custom, non-collaborative (i.e. no shared sessions) “quest”)
+        </li>
+      
+    </ul>
+  
+        </li>
+      
+    </ul>
+  
     <p class='mb-3'>
-      I mentioned NFTs. I can’t believe they haven’t made themselves into videogames yet! Imagine how cool <em>that</em> would be. Real-world vendors could sell virtual items in the form of NFTs, e.g. Nike could sell special sneakers, authors could sell “virtual first editions”, and because the whole in-world economy is based on some blockchain (which also exists in the real-world, just like other cryptos) these in-world items essentially become NFTs; they could be bought, sold and traded in the real-world <em>just</em> like normal NFTs. <strong>Except</strong>, <em>except</em>, except they aren’t just any old NFT. In-world they actually have utility! (e.g. a badass sword)
+      An interesting extension is then: could a world have mixed genesis/snapshot states? For example, “quest simulations” within an otherwise persistent world?
     </p>
   
   <!-- What goes in this file will appear below the note body-->
@@ -167,6 +195,28 @@
               <div class='flex flex-col lg:flex-row lg:space-x-2'>
                 
                 
+  <div class='flex-1 p-4 mt-8 bg-gray-100 rounded'>
+    <header class='mb-2 text-xl font-semibold text-gray-500'>Links to this page</header>
+    <ul class='space-y-1'>
+      
+        <li>
+          <a class='text-blue-600 mavenLinkBold hover:bg-blue-50' href='releases/v0.crap'>
+            v0.crap
+          </a>
+          
+            <div class='mb-4 overflow-auto text-sm text-gray-500'>
+  
+    <div class='pl-2 mt-2 border-l-2 border-blue-200 hover:border-blue-500'>
+      <div>A single, <a href='vision/engine/genesis' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>persistent</a> world</div>
+    </div>
+  
+</div>
+          
+        </li>
+      
+    </ul>
+  </div>
+
               </div>
               
   <section class='flex flex-wrap items-end justify-center my-4 space-x-2 space-y-2 font-mono text-sm'>
