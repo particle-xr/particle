@@ -17,8 +17,18 @@
     {
       devShell."${system}" = pkgs.mkShell {
         name = "particle";
-        nativeBuildInputs = with pkgs; [
+        nativeBuildInputs = with pkgs; with xorg; [
+          cmake
           nodejs
+          glfw-wayland
+          glm
+          vulkan-headers
+          # TODO: vulkan-extension-layer
+          vulkan-validation-layers
+          libX11
+          libXrandr
+          libXi
+          libXxf86vm
         ];
       };
 
@@ -35,15 +45,21 @@
               '';
             };
           };
+
+        test = utils.lib.mkApp {
+          drv = pkgs.libparticle;
+          exePath = "/bin/vulkan-test";
+        };
       };
 
       overlay = final: prev: {
+        libparticle = prev.callPackage ./libparticle { };
         onetbb = prev.callPackage ./packages/onetbb { };
         usd = prev.callPackage ./packages/usd { };
       };
 
       packages."${system}" = {
-        inherit (pkgs) onetbb usd;
+        inherit (pkgs) libparticle onetbb usd;
       };
     };
 }
