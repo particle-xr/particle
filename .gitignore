@@ -1,8 +1,3 @@
-# Direnv
-.direnv/
-
-# Nix build artifacts
-result
 ### C
 # Prerequisites
 *.d
@@ -91,7 +86,11 @@ dkms.conf
 *.out
 *.app
 
+### Clangd
+.cache/
+
 ### CMake
+build
 CMakeLists.txt.user
 CMakeCache.txt
 CMakeFiles
@@ -103,3 +102,9 @@ install_manifest.txt
 compile_commands.json
 CTestTestfile.cmake
 _deps
+
+### Direnv
+.direnv/
+
+### Nix
+result

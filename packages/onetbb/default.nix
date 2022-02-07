@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, pkgs, ... }:
+{ stdenv, fetchFromGitHub, cmake }:
 
 stdenv.mkDerivation rec {
   pname = "onetbb";
@@ -11,7 +11,5 @@ stdenv.mkDerivation rec {
     hash = "sha256-TJ/oSSMvgtKuz7PVyIoFEbBW6EZz7t2wr/kP093HF/w=";
   };
 
-  nativeBuildInputs = with pkgs; [ cmake ];
-
-  enableParallelBuilding = true;
+  nativeBuildInputs = [ cmake ];
 }

@@ -13,5 +13,6 @@ mkShell {
     libXrandr
     libXi
     libXxf86vm
+    lldb_12
   ];
 }

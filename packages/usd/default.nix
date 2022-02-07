@@ -1,4 +1,4 @@
-{ stdenv, fetchFromGitHub, pkgs, ... }:
+{ stdenv, fetchFromGitHub, cmake, python39, boost, opensubdiv, tbb }:
 
 stdenv.mkDerivation rec {
   pname = "usd";
@@ -11,14 +11,13 @@ stdenv.mkDerivation rec {
     hash = "sha256-oSP3XgPP3OI6YwxzDAj39Ppo92P52RL8C08hw4JOaKE=";
   };
 
-  nativeBuildInputs = with pkgs; [ cmake python39 ];
-  buildInputs = with pkgs; [
+  nativeBuildInputs = [ cmake python39 ];
+  buildInputs = [
     boost
     opensubdiv
     tbb
-    (python3.withPackages (ps: with ps; [ boost pyopengl pyside2 ]))
+    (python39.withPackages (ps: with ps; [ boost pyopengl pyside2 ]))
   ];
 
-  enableParallelBuilding = true;
   cmakeFlags = [ "-DPXR_BUILD_IMAGING=FALSE" "-DPXR_ENABLE_PYTHON_SUPPORT=ON" "-DPXR_ENABLE_GL_SUPPORT=FALSE" ];
 }

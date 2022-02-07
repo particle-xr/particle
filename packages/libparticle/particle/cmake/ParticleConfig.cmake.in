@@ -1,0 +1,10 @@
+# vim: ft=cmake
+set(PARTICLE_VERSION "@PARTICLE_VERSION@")
+
+@PACKAGE_INIT@
+
+set_and_check(PARTICLE_INCLUDE_DIR "@PACKAGE_INCLUDE_INSTALL_DIR@")
+
+check_required_components(Particle)
+
+set(PARTICLE_FOUND TRUE)
