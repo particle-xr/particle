@@ -6,6 +6,9 @@ mkShell {
     cmake
     glfw-wayland
     glm
+    glslang
+    stb
+    tinyobjloader
     vulkan-headers
     vulkan-loader
     vulkan-validation-layers
