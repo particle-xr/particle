@@ -1,0 +1,6 @@
+namespace particle {
+
+class Platform
+{};
+
+}

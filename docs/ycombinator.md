@@ -80,4 +80,6 @@ The job I am currently doing is exactly that: creating a solution by letting the
 
 The Particle universe will have its own economy. Taxes, real estate, items, teleportation fees. Imagine: years from now the most valuable crypto will be one that is only useful in a video game :laughing:.
 
+How much will we make? Fortnite has 80 million monthly active players. Let's say we get there. And let's say the only thing players pay for is teleportation fees; 10 cents to anywhere in the universe. That's 8 million dollars a month if everyone teleports just a single time (which is unlikely given there's an entire universe to explore!).
+
 [internet-archive]: https://archive.org

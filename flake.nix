@@ -35,10 +35,9 @@
                 };
               };
           };
-          devShell = pkgs.mkShell {
-            name = "particle";
-            nativeBuildInputs = with pkgs; [ cmake doxygen nodejs ];
-          };
+
+          defaultPackage = channels.nixpkgs.libparticle;
+
           packages = utils.lib.exportPackages self.overlays channels;
         };
     };

@@ -1,4 +1,4 @@
-{ stdenv, cmake, doxygen }:
+{ stdenv, clang-tools, cmake, doxygen, doctest, nodejs, glfw-wayland, glm, vulkan-headers, vulkan-loader, vulkan-validation-layers }:
 
 stdenv.mkDerivation {
   pname = "particle";
@@ -6,5 +6,6 @@ stdenv.mkDerivation {
 
   src = ./particle;
 
-  nativeBuildInputs = [ cmake doxygen ];
+  nativeBuildInputs = [ clang-tools cmake doxygen nodejs ];
+  buildInputs = [ doctest glfw-wayland glm vulkan-headers vulkan-loader vulkan-validation-layers ];
 }

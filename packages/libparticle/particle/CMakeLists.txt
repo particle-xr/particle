@@ -13,10 +13,19 @@ set(CMAKE_EXPORT_COMPILE_COMMANDS ON)
 set(CMAKE_MODULE_PATH ${PROJECT_SOURCE_DIR}/cmake)
 
 set(SOURCE_ROOT ${PROJECT_SOURCE_DIR}/particle)
-set(SOURCES ${SOURCE_ROOT}/state_exporter.cpp)
+configure_file(${SOURCE_ROOT}/version.cpp.in ${PROJECT_BINARY_DIR}/version.cpp
+               @ONLY)
+
+set(SOURCES
+    ${PROJECT_BINARY_DIR}/version.cpp
+    ${SOURCE_ROOT}/sphere.cpp
+    ${SOURCE_ROOT}/state_exporter.cpp
+    ${SOURCE_ROOT}/adapter/debug_info.cpp
+    ${SOURCE_ROOT}/adapter/vulkan/application.cpp
+    ${SOURCE_ROOT}/adapter/vulkan/debugger.cpp
+    ${SOURCE_ROOT}/adapter/vulkan/instance.cpp)
 
 include(CMakePackageConfigHelpers)
-include(GenerateDocs)
 include(GNUInstallDirs)
 
 add_library(particle ${SOURCES})
@@ -27,6 +36,12 @@ target_include_directories(
   PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   PRIVATE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/detail>)
+
+find_package(glfw3 REQUIRED)
+find_package(glm REQUIRED)
+find_package(Vulkan REQUIRED)
+
+target_link_libraries(particle PUBLIC Vulkan::Vulkan)
 
 add_library(Particle::particle ALIAS particle)
 
@@ -54,3 +69,18 @@ install(
 install(FILES ${PROJECT_BINARY_DIR}/ParticleConfig.cmake
               ${PROJECT_BINARY_DIR}/ParticleConfigVersion.cmake
         DESTINATION ${CMAKE_INSTALL_LIBDIR}/cmake/${PROJECT_NAME})
+
+option(PARTICLE_ENABLE_EXAMPLES "Build example applications" ON)
+if(PARTICLE_ENABLE_EXAMPLES)
+  add_subdirectory(examples)
+endif()
+
+option(PARTICLE_ENABLE_DOCS "Generate library documentation" ON)
+if(PARTICLE_ENABLE_DOCS)
+  include(ParticleGenerateDocs)
+endif()
+
+if(PARTICLE_ENABLE_TEST)
+  option(PARTICLE_ENABLE_TEST "Build unit tests and test harnesses" ON)
+endif()
+include(ParticleSetupTests)
