@@ -103,6 +103,9 @@ compile_commands.json
 CTestTestfile.cmake
 _deps
 
+### CMake Language Server
+.cmake/
+
 ### Direnv
 .direnv/
 
