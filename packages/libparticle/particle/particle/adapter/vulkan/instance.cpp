@@ -1,8 +1,13 @@
 #include "particle/adapter/vulkan/instance.hpp"
-#include "particle/adapter/vulkan/debug.hpp"
+#include "particle/adapter/vulkan/debugger.hpp"
+#include "particle/adapter/vulkan/device.hpp"
+#include "particle/adapter/vulkan/su/utils.hpp"
+#include "particle/adapter/vulkan/utils.hpp"
 
 // #include <wayland-client.h>
 
+#include <algorithm>
+#include <cassert>
 #include <cstdint>
 #include <cstring>
 #include <iostream>
@@ -12,28 +17,18 @@ using namespace particle::vulkan;
 
 Instance::Instance(std::string name, bool enable_validation)
   : name_(name)
-  , enable_validation_(enable_validation)
+  , validation_enabled_(enable_validation)
 {
-  VkApplicationInfo app_info = {};
-  app_info.sType = VK_STRUCTURE_TYPE_APPLICATION_INFO;
-  app_info.pApplicationName = name_.c_str();
-  app_info.pEngineName = "particle";
-  app_info.apiVersion = VK_API_VERSION_1_2;
+  vk::ApplicationInfo app_info{ .pApplicationName = name.c_str(),
+                                .pEngineName = "particle",
+                                .apiVersion = VK_API_VERSION_1_2 };
 
   std::vector<const char*> extensions = { VK_KHR_SURFACE_EXTENSION_NAME };
   // extensions.push_back(VK_KHR_WAYLAND_SURFACE_EXTENSION_NAME);
 
-  std::uint32_t extension_count = 0;
-  vkEnumerateInstanceExtensionProperties(nullptr, &extension_count, nullptr);
-  if (extension_count > 0) {
-    std::vector<VkExtensionProperties> supported_extensions(extension_count);
-    if (vkEnumerateInstanceExtensionProperties(
-          nullptr, &extension_count, &supported_extensions.front()) ==
-        VK_SUCCESS) {
-      for (auto extension : supported_extensions) {
-        supported_extensions_.push_back(extension.extensionName);
-      }
-    }
+  auto supported_extensions = vk::enumerateInstanceExtensionProperties();
+  for (auto extension : supported_extensions) {
+    supported_extensions_.push_back(extension.extensionName);
   }
 
   if (!requested_extensions_.empty()) {
@@ -49,10 +44,8 @@ Instance::Instance(std::string name, bool enable_validation)
     }
   }
 
-  VkInstanceCreateInfo instance_create_info = {};
-  instance_create_info.sType = VK_STRUCTURE_TYPE_INSTANCE_CREATE_INFO;
-  instance_create_info.pNext = nullptr;
-  instance_create_info.pApplicationInfo = &app_info;
+  vk::InstanceCreateInfo instance_create_info{ .pApplicationInfo = &app_info };
+
   if (!extensions.empty()) {
     if (enable_validation) {
       extensions.push_back(VK_EXT_DEBUG_UTILS_EXTENSION_NAME);
@@ -64,54 +57,109 @@ Instance::Instance(std::string name, bool enable_validation)
   // TODO: Figure out why this isn't hitting.
   const auto validation_layer_name = "VK_LAYER_KHRONOS_validation";
   if (enable_validation) {
-    std::uint32_t instance_layer_count;
-    vkEnumerateInstanceLayerProperties(&instance_layer_count, nullptr);
-    std::vector<VkLayerProperties> instance_layer_properties(
-      instance_layer_count);
-    vkEnumerateInstanceLayerProperties(&instance_layer_count,
-                                       &instance_layer_properties.front());
-    bool validation_layer_present = false;
-    for (auto layer : instance_layer_properties) {
-      if (strcmp(layer.layerName, validation_layer_name) == 0) {
-        validation_layer_present = true;
+    auto supported_layers =
+      vk::enumerateInstanceLayerProperties("VK_LAYER_KHRONOS_validation");
+    if (supported_layers.empty()) {
+      std::cerr << "Validation layer is not present; validation is disabled"
+                << std::endl;
+      validation_enabled_ = false;
+    } else {
+      instance_create_info.ppEnabledLayerNames = &validation_layer_name;
+      instance_create_info.enabledLayerCount = 1;
+    }
+  }
+
+  instance_ = vk::createInstanceUnique(instance_create_info, nullptr);
+
+  if (validation_enabled_) {
+    // debugger_ = std::make_unique<Debugger>(instance_);
+  }
+
+  physical_device_ = instance().enumeratePhysicalDevices().front();
+
+  std::uint32_t graphics_queue_family_index = su::findGraphicsQueueFamilyIndex(
+    physical_device_.getQueueFamilyProperties());
+
+  std::uint32_t width, height = 64;
+  su::WindowData window = su::createWindow(name, { width, height });
+  vk::SurfaceKHR surface;
+  {
+    VkSurfaceKHR s;
+    glfwCreateWindowSurface(
+      static_cast<VkInstance>(instance()), window.handle, nullptr, &s);
+    surface = vk::SurfaceKHR(s);
+  }
+
+  auto queue_family_properties = physical_device_.getQueueFamilyProperties();
+  std::size_t present_queue_family_index =
+    physical_device_.getSurfaceSupportKHR(graphics_queue_family_index, surface)
+      ? graphics_queue_family_index
+      : queue_family_properties.size();
+
+  if (present_queue_family_index == queue_family_properties.size()) {
+    for (auto i = 0ul; i < queue_family_properties.size(); ++i) {
+      if ((queue_family_properties[i].queueFlags &
+           vk::QueueFlagBits::eGraphics) &&
+          physical_device_.getSurfaceSupportKHR(i, surface)) {
+        graphics_queue_family_index = su::checked_cast<std::uint32_t>(i);
+        present_queue_family_index = i;
         break;
       }
     }
-    if (validation_layer_present) {
-      instance_create_info.ppEnabledLayerNames = &validation_layer_name;
-      instance_create_info.enabledLayerCount = 1;
-    } else {
-      std::cerr << "Validation layer is not present; validation is disabled"
-                << std::endl;
-      enable_validation_ = false;
+    if (present_queue_family_index == queue_family_properties.size()) {
+      for (auto i = 0ul; i < queue_family_properties.size(); ++i) {
+        if (physical_device_.getSurfaceSupportKHR(i, surface)) {
+          present_queue_family_index = i;
+          break;
+        }
+      }
+    }
+    if ((graphics_queue_family_index == queue_family_properties.size()) ||
+        (present_queue_family_index == queue_family_properties.size())) {
+      throw std::runtime_error(
+        "Could find a queue for graphics or present -> terminating");
     }
   }
 
-  if (auto result =
-        vkCreateInstance(&instance_create_info, nullptr, &instance_);
-      result != VK_SUCCESS) {
-    throw std::runtime_error("failed to create VkInstance (error code: " +
-                             std::to_string(result) + ")");
-  }
+  logical_device_ = utils::createDeviceUnique(
+    physical_device_, graphics_queue_family_index, su::getDeviceExtensions());
+
+  auto formats = physical_device_.getSurfaceFormatsKHR(surface);
+  assert(!formats.empty());
+
+  auto format = (formats.front().format == vk::Format::eUndefined
+                   ? vk::Format::eB8G8R8A8Unorm
+                   : formats.front().format);
+
+  command_pool_ = device().createCommandPoolUnique(vk::CommandPoolCreateInfo{
+    .flags = vk::CommandPoolCreateFlags(),
+    .queueFamilyIndex = graphics_queue_family_index });
+
+  command_buffer_ =
+    std::move(device()
+                .allocateCommandBuffersUnique(vk::CommandBufferAllocateInfo{
+                  .commandPool = *command_pool_,
+                  .level = vk::CommandBufferLevel::ePrimary,
+                  .commandBufferCount = 1 })
+                .front());
 }
 
-Instance::~Instance()
-{
-  if (enable_validation_) {
-    // TODO: Destroy debug callback
-  }
-
-  vkDestroyInstance(instance_, nullptr);
-}
-
-void
-Instance::operator()(Debugger& debugger)
-{
-  debugger.setup(instance_);
-}
+Instance::~Instance() = default;
 
 bool
 Instance::validation_enabled() const
 {
-  return enable_validation_;
+  return validation_enabled_;
+}
+
+vk::Instance
+Instance::instance()
+{
+  return *instance_;
+}
+
+vk::Device
+Instance::device()
+{
+  return *logical_device_;
 }

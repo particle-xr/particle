@@ -1,6 +1,6 @@
 #pragma once
 
-#include <vulkan/vulkan.h>
+#include "particle/adapter/vulkan.hpp"
 
 namespace particle::vulkan {
 
@@ -9,18 +9,12 @@ class Debugger
 public:
   using type = Debugger;
 
-  Debugger(VkDebugReportFlagsEXT flags, VkDebugReportCallbackEXT callback);
+  Debugger(vk::Instance instance);
   ~Debugger();
 
-  void setup(VkInstance instance);
-
 private:
-  VkDebugReportFlagsEXT flags_;
-  VkDebugReportCallbackEXT callback_;
-  PFN_vkCreateDebugUtilsMessengerEXT vkCreateDebugUtilsMessengerEXT_;
-  PFN_vkDestroyDebugUtilsMessengerEXT vkDestroyDebugUtilsMessengerEXT_;
-  VkInstance instance_;
-  VkDebugUtilsMessengerEXT debug_utils_messenger_;
+  vk::Instance instance_;
+  vk::UniqueDebugUtilsMessengerEXT debug_messenger_;
 };
 
 }

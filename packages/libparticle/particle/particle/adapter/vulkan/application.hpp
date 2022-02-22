@@ -1,3 +1,5 @@
+#pragma once
+
 #include <cstdint>
 #include <memory>
 #include <string>
@@ -22,7 +24,6 @@ protected:
 
 private:
   std::unique_ptr<Instance> instance_;
-  std::unique_ptr<Debugger> debugger_;
 };
 
 }
