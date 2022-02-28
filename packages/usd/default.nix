@@ -1,5 +1,6 @@
-{ stdenv, fetchFromGitHub, cmake, python39, boost, opensubdiv, tbb }:
+{ lib, stdenv, fetchFromGitHub, cmake, libglvnd, python39, boost170, opencolorio_1, openimageio2, opensubdiv, osl, ptex, tbb, enableImaging ? false, enableUsdview ? true }:
 
+with lib;
 stdenv.mkDerivation rec {
   pname = "usd";
   version = "21.11";
@@ -11,13 +12,22 @@ stdenv.mkDerivation rec {
     hash = "sha256-oSP3XgPP3OI6YwxzDAj39Ppo92P52RL8C08hw4JOaKE=";
   };
 
-  nativeBuildInputs = [ cmake python39 ];
+  nativeBuildInputs = [ cmake ];
   buildInputs = [
-    boost
-    opensubdiv
+    # Core
+    (boost170.override { enablePython = true; python = python39; })
+    libglvnd
+    # python39
     tbb
-    (python39.withPackages (ps: with ps; [ boost pyopengl pyside2 ]))
+  ] ++ optionals enableImaging [
+    opencolorio_1
+    openimageio2
+    opensubdiv
+    osl
+    ptex
+  ] ++ optionals enableUsdview [
+    (python39.withPackages (ps: with ps; [ jinja2 pyopengl pyside2 pyside2-tools ]))
   ];
 
-  cmakeFlags = [ "-DPXR_BUILD_IMAGING=FALSE" "-DPXR_ENABLE_PYTHON_SUPPORT=ON" "-DPXR_ENABLE_GL_SUPPORT=FALSE" ];
+  cmakeFlags = optionals (!enableImaging) [ "-DPXR_BUILD_IMAGING=OFF" ];
 }
