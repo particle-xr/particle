@@ -4,8 +4,9 @@
 
 using namespace particle;
 
-Sphere::Sphere(double radius)
-  : vertices_(12 * 3)
+Sphere::Sphere(Dimensional<3> origin, double radius)
+  : origin_(origin)
+  , vertices_(12 * 3)
 {
   int i1, i2;
   float z, xy;
@@ -38,4 +39,10 @@ Sphere::Sphere(double radius)
   vertices_[i1] = 0;
   vertices_[i1 + 1] = 0;
   vertices_[i1 + 2] = -radius;
+}
+
+const Dimensional<3>&
+Sphere::origin()
+{
+  return origin_;
 }

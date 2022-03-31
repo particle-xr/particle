@@ -113,5 +113,7 @@ _deps
 result
 
 ### Zettelkasten
-
 .zk/notebook.db
+
+### Pre-commit
+.pre-commit-config.yaml

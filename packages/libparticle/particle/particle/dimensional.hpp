@@ -1,89 +1,175 @@
+#pragma once
+
 #include "particle/concepts.hpp"
+
+#include <iostream>
 
 namespace particle {
 
-template<class T>
 class X
 {
 public:
   using type = X;
-  using value_type = T;
 
-  X(const T& value)
+  X(double value)
     : value_(value)
   {}
 
-  const T& x() { return value_; }
+  const double& x() const { return value_; }
+
+  type& operator+=(const type& p) { return (value_ += p.x(), *this); }
+
+  friend std::ostream& operator<<(std::ostream& os, const type& t)
+  {
+    return os << t.value_;
+  }
+
+  friend bool operator==(const type& lhs, const type& rhs)
+  {
+    return lhs.value_ == rhs.value_;
+  }
+
+  friend bool operator!=(const type& lhs, const type& rhs)
+  {
+    return !(lhs == rhs);
+  }
 
 private:
-  T value_;
+  double value_;
 };
 
-template<class T>
 class Y
 {
 public:
   using type = Y;
-  using value_type = T;
 
-  Y(const T& value)
+  Y(const double& value)
     : value_(value)
   {}
 
-  const T& y() { return value_; }
+  const double& y() const { return value_; }
+
+  type& operator+=(const type& p) { return (value_ += p.y(), *this); }
+
+  friend std::ostream& operator<<(std::ostream& os, const type& t)
+  {
+    return os << t.value_;
+  }
+
+  friend bool operator==(const type& lhs, const type& rhs)
+  {
+    return lhs.value_ == rhs.value_;
+  }
+
+  friend bool operator!=(const type& lhs, const type& rhs)
+  {
+    return !(lhs == rhs);
+  }
 
 private:
-  T value_;
+  double value_;
 };
 
-template<class T>
 class Z
 {
 public:
   using type = Z;
-  using value_type = T;
 
-  Z(const T& value)
+  Z(double value)
     : value_(value)
   {}
 
-  const T& z() { return value_; }
+  const double& z() const { return value_; }
+
+  type& operator+=(const type& p) { return (value_ += p.z(), *this); }
+
+  friend std::ostream& operator<<(std::ostream& os, const type& t)
+  {
+    return os << t.value_;
+  }
+
+  friend bool operator==(const type& lhs, const type& rhs)
+  {
+    return lhs.value_ == rhs.value_;
+  }
+
+  friend bool operator!=(const type& lhs, const type& rhs)
+  {
+    return !(lhs == rhs);
+  }
 
 private:
-  T value_;
+  double value_;
 };
 
-template<int Dimensionality, class T = int>
+template<int Dimensionality>
 class Dimensional;
 
-template<class T>
-class Dimensional<2, T>
-  : public X<T>
-  , public Y<T>
+template<>
+class Dimensional<2>
+  : public X
+  , public Y
 {
 public:
   using type = Dimensional;
 
-  Dimensional(const T& x, const T& y)
-    : X<T>(x)
-    , Y<T>(y)
+  Dimensional(const double& x, const double& y)
+    : X(x)
+    , Y(y)
   {}
+
+  friend bool operator==(const type& lhs, const type& rhs)
+  {
+    return static_cast<const X&>(lhs) == static_cast<const X&>(rhs) &&
+           static_cast<const Y&>(lhs) == static_cast<const Y&>(rhs);
+  }
+
+  friend bool operator!=(const type& lhs, const type& rhs)
+  {
+    return !(lhs == rhs);
+  }
+
+  template<typename D>
+  void displace(const auto& f)
+  {
+    D& d = *this;
+    d += f;
+  }
 };
 
-template<class T>
-class Dimensional<3, T>
-  : public X<T>
-  , public Y<T>
-  , public Z<T>
+template<>
+class Dimensional<3>
+  : public X
+  , public Y
+  , public Z
 {
 public:
   using type = Dimensional;
 
-  Dimensional(const T& x, const T& y, const T& z)
-    : X<T>(x)
-    , Y<T>(y)
-    , Z<T>(z)
+  Dimensional(const double& x, const double& y, const double& z)
+    : X(x)
+    , Y(y)
+    , Z(z)
   {}
+
+  friend bool operator==(const type& lhs, const type& rhs)
+  {
+    return static_cast<const X&>(lhs) == static_cast<const X&>(rhs) &&
+           static_cast<const Y&>(lhs) == static_cast<const Y&>(rhs) &&
+           static_cast<const Z&>(lhs) == static_cast<const Z&>(rhs);
+  }
+
+  friend bool operator!=(const type& lhs, const type& rhs)
+  {
+    return !(lhs == rhs);
+  }
+
+  template<typename D>
+  void displace(const auto& f)
+  {
+    D& d = *this;
+    d += f;
+  }
 };
 
 }
