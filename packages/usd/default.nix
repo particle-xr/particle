@@ -1,4 +1,19 @@
-{ lib, stdenv, fetchFromGitHub, cmake, libglvnd, python39, boost170, opencolorio_1, openimageio2, opensubdiv, osl, ptex, tbb, enableImaging ? false, enableUsdview ? true }:
+{ lib
+, stdenv
+, fetchFromGitHub
+, cmake
+, libglvnd
+, python39
+, boost170
+, opencolorio_1
+, openimageio2
+, opensubdiv
+, osl
+, ptex
+, tbb
+, enableImaging ? false
+, enableUsdview ? true
+}:
 
 with lib;
 stdenv.mkDerivation rec {
@@ -17,7 +32,6 @@ stdenv.mkDerivation rec {
     # Core
     (boost170.override { enablePython = true; python = python39; })
     libglvnd
-    # python39
     tbb
   ] ++ optionals enableImaging [
     opencolorio_1

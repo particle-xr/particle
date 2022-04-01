@@ -1,4 +1,15 @@
-{ stdenv, clang-tools, cmake, doxygen, doctest, nodejs, glfw-wayland, glm, vulkan-headers, vulkan-loader, vulkan-validation-layers }:
+{ stdenv
+, clang-tools
+, cmake
+, doxygen
+, doctest
+, nodejs
+, glfw-wayland
+, glm
+, vulkan-headers
+, vulkan-loader
+, vulkan-validation-layers
+}:
 
 stdenv.mkDerivation {
   pname = "particle";
