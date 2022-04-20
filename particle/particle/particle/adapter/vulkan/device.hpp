@@ -21,7 +21,13 @@ class Device
 public:
   using type = Device;
 
-  Device(vk::PhysicalDevice, vk::PhysicalDeviceFeatures, std::vector<const char*>, void*, bool, vk::QueueFlags, bool);
+  Device(vk::PhysicalDevice,
+         vk::PhysicalDeviceFeatures,
+         std::vector<const char*>,
+         void*,
+         bool,
+         vk::QueueFlags,
+         bool);
   ~Device();
 
   vk::Queue get_device_queue() const;

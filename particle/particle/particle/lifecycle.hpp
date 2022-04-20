@@ -1,6 +1,6 @@
 namespace particle {
 
-template<class T>
+template<typename T>
 class Lifecycle
 {};
 

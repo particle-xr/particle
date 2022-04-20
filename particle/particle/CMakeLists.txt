@@ -27,6 +27,7 @@ target_include_directories(
 
 find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
+find_package(ReactPhysics3D REQUIRED)
 find_package(Vulkan REQUIRED)
 
 target_link_libraries(particle PUBLIC Vulkan::Vulkan)
