@@ -10,6 +10,7 @@
     
       <meta property='og:description' content />
       <meta property='og:site_name' content='Particle XR' />
+      <meta property='og:image' content />
       <meta property='og:type' content='website' />
       <meta property='og:title' content='Task Index' />
     
@@ -21,9 +22,7 @@
 <script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
 
   
-  <!-- CSSSTART -->
-	<link rel="stylesheet" href="emanote-compiled-794aaf658e1f7cc7460d9e8200e8202c.css" />
-  <!-- CSSEND -->
+  <link href='tailwind.css?instanceId=9b04d104-8ae8-411a-a2c9-a7622227add1' rel='stylesheet' type='text/css' />
 
   <!-- Heist error element -->
   <style type='text/css'>
@@ -38,15 +37,21 @@
 <style>
   @font-face {
     font-family: 'MavenPro';
-    src: url('_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf') format("truetype");
+    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf */
+    src: url(_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf) format("truetype");
     font-display: swap;
   }
 
   body {
     font-family: 'MavenPro', sans-serif;
+    /* font-variation-settings: 'wght'300; */
   }
 
   a.mavenLinkBold {
+    font-variation-settings: 'wght'500;
+  }
+
+  strong {
     font-variation-settings: 'wght'500;
   }
 
@@ -111,39 +116,43 @@
                 
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          Read about <a href='https://unity.com/' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>Unity</a>
-                        </span>
-                      </label>
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        Read about <a href='https://unity.com/' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>Unity</a>
+                      
+</span>
+
                     </div>
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          Read about <a href='https://www.unrealengine.com/en-US/' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>Unreal Engine</a>
-                        </span>
-                      </label>
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        Read about <a href='https://www.unrealengine.com/en-US/' class='text-gray-600 hover:underline' target='_blank' rel='noopener'>Unreal Engine</a>
+                      
+</span>
+
                     </div>
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          How do <a href='research/gpu' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>GPUs</a> work?
-                        </span>
-                      </label>
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        How do <a href='research/gpu' class='text-gray-600 font-bold hover:bg-gray-50' data-wikilink-type='WikiLinkNormal'>GPUs</a> work?
+                      
+</span>
+
                     </div>
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          What does Oculus code look like?
-                        </span>
-                      </label>
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        What does Oculus code look like?
+                      
+</span>
+
                     </div>
                   
                 
@@ -187,61 +196,13 @@
                 
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          Brain dump
-                        </span>
-                      </label>
-                    </div>
-                  
-                
-              </div>
-            </section>
-          
-            <section class='mt-4 mb-6'>
-              <div class='mt-1 mb-2 py-0.5 px-1 rounded flex flex-row-reverse'>
-                
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href=''>
-                        Particle XR
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href='vision'>
-                        Vision
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                    <li class='inline-flex items-center'>
-                      <a class='text-gray-900 opacity-50 hover:opacity-100' href='vision/universe'>
-                        Universe
-                      </a>
-                      <span class='text-gray-700 px-2'>\</span>
-                    </li>
-                  
-                
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        Brain dump
+                      
+</span>
 
-                <div class='flex-1'>
-                  <a class='font-bold text-blue-700  hover:underline' href='vision/universe/hosting'>
-                    Hosting your own Simulation
-                  </a>
-                </div>
-              </div>
-              <div class>
-                
-                  
-                    <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          Brain dump
-                        </span>
-                      </label>
                     </div>
                   
                 
@@ -285,12 +246,13 @@
                 
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          Python bindings for some subset of the API, namely the scriptable (and therefore customizable) portions
-                        </span>
-                      </label>
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        Python bindings for some subset of the API, namely the scriptable (and therefore customizable) portions
+                      
+</span>
+
                     </div>
                   
                 
@@ -334,12 +296,13 @@
                 
                   
                     <div class='bg-white py-1.5 px-2 my-1 rounded shadow border-2 hover:border-blue-600'>
-                      <label class='inline-flex items-start space-x-2'>
-                        <input type='checkbox' disabled class='flex-shrink-0 w-5 h-5' />
-                        <span>
-                          Brain dump
-                        </span>
-                      </label>
+                      <svg xmlns='http://www.w3.org/2000/svg' class='inline h-4 w-4 mb-1 text-gray-600 stroke-current' fill='none' viewBox='0 0 28 28'><desc>☐</desc><rect stroke-width='3' x='2' y='2' width='24' height='24' rx='3'></rect></svg>
+<span>
+  
+                        Brain dump
+                      
+</span>
+
                     </div>
                   
                 
@@ -370,7 +333,7 @@
     </a>
   </div>
   <div>
-    <a href='https://note.ema.srid.ca' target='_blank' title='Generated by Emanote 0.4.3.0'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.6.11.1'>
       <img class='w-6 h-6 hover:text-blue-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
