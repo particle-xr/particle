@@ -26,7 +26,7 @@
                 hash = "sha256-MmZiHtcWweI1DgBiyAm41wdgFe3BhYQlAg0snDiZUnk=";
               };
             });
-            emanote = inputs.emanote.defaultPackage."${system}";
+            emanote = inputs.emanote.packages."${system}".default;
             reactphysics3d = prev.callPackage ./thirdparty/reactphysics3d {};
           })
           (final: prev: {
@@ -104,7 +104,7 @@
       };
 
       packages = {
-        libparticle = pkgs.libparticle;
+        inherit (pkgs) libparticle;
       };
     });
 }

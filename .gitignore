@@ -117,3 +117,7 @@ result
 
 ### Pre-commit
 .pre-commit-config.yaml
+
+### Emanote
+output
+output.docker
