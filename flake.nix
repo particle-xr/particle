@@ -95,9 +95,7 @@
         };
       };
 
-      defaultPackage = pkgs.libparticle;
-
-      devShell = pkgs.stdenv.mkDerivation {
+      devShells.default = pkgs.stdenv.mkDerivation {
         name = "particle";
         inherit (pkgs.libparticle) buildInputs nativeBuildInputs;
         inherit (self.checks."${system}".pre-commit) shellHook;
@@ -105,6 +103,7 @@
 
       packages = {
         inherit (pkgs) libparticle;
+        default = pkgs.libparticle;
       };
     });
 }
