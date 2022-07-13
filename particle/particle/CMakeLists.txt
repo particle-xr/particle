@@ -22,15 +22,16 @@ set_target_properties(particle PROPERTIES VERSION ${PROJECT_VERSION}
 target_include_directories(
   particle
   PUBLIC $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}>
-         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
-  PRIVATE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/detail>)
+         $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>)
 
+find_package(fmt REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 find_package(ReactPhysics3D REQUIRED)
+find_package(spdlog REQUIRED)
 find_package(Vulkan REQUIRED)
 
-target_link_libraries(particle PUBLIC Vulkan::Vulkan)
+target_link_libraries(particle PUBLIC fmt::fmt spdlog::spdlog Vulkan::Vulkan)
 
 add_library(Particle::particle ALIAS particle)
 
@@ -69,7 +70,12 @@ if(PARTICLE_ENABLE_DOCS)
   include(ParticleGenerateDocs)
 endif()
 
+option(PARTICLE_ENABLE_SIMULATIONS "Build example simulations" ON)
+if(PARTICLE_ENABLE_SIMULATIONS)
+  add_subdirectory(simulations)
+endif()
+
 option(PARTICLE_ENABLE_TESTS "Build unit tests and test harnesses" ON)
-if(PARTICLE_ENABLE_TEST)
+if(PARTICLE_ENABLE_TESTS)
   include(ParticleSetupTesting)
 endif()
