@@ -95,7 +95,7 @@
         };
       };
 
-      devShells.default = pkgs.stdenv.mkDerivation {
+      devShells.default = pkgs.gcc11Stdenv.mkDerivation {
         name = "particle";
         inherit (pkgs.libparticle) buildInputs nativeBuildInputs;
         inherit (self.checks."${system}".pre-commit) shellHook;
