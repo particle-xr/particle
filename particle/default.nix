@@ -8,7 +8,7 @@
   glfw-wayland,
   glm,
   nodejs,
-  reactphysics3d,
+  # reactphysics3d,
   spdlog,
   vulkan-headers,
   vulkan-loader,
@@ -31,7 +31,7 @@ gcc11Stdenv.mkDerivation {
     fmt_8
     glfw-wayland
     glm
-    reactphysics3d
+    # reactphysics3d
     spdlog
     vulkan-headers
     vulkan-loader
