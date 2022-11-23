@@ -1,0 +1,41 @@
+#include "particle/version.hxx"
+
+#include <iostream>
+
+namespace particle {
+namespace detail {
+
+// clang-format off
+// NOTE: These are injected by CMake when configure_file'ing this file.
+version::version()
+  : major(@PROJECT_VERSION_MAJOR@)
+  , minor(@PROJECT_VERSION_MINOR@)
+  , patch(@PROJECT_VERSION_PATCH@)
+  , full_("@PROJECT_VERSION@")
+{}
+// clang-format on
+
+const std::string
+version::full_version_string() const
+{
+  return full_;
+}
+
+std::ostream&
+operator<<(std::ostream& os, const version& v)
+{
+  return os << v.full_version_string();
+}
+
+}
+
+const detail::version&
+version()
+{
+  static auto v = detail::version{};
+  return v;
+}
+
+}
+
+// vim: ft=cpp

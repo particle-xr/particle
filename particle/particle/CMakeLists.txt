@@ -25,12 +25,14 @@ target_include_directories(
          $<INSTALL_INTERFACE:${CMAKE_INSTALL_INCLUDEDIR}>
   PRIVATE $<BUILD_INTERFACE:${PROJECT_SOURCE_DIR}/detail>)
 
+find_package(fmt REQUIRED)
 find_package(glfw3 REQUIRED)
 find_package(glm REQUIRED)
 find_package(ReactPhysics3D REQUIRED)
+find_package(spdlog REQUIRED)
 find_package(Vulkan REQUIRED)
 
-target_link_libraries(particle PUBLIC Vulkan::Vulkan)
+target_link_libraries(particle PUBLIC fmt::fmt spdlog::spdlog Vulkan::Vulkan)
 
 add_library(Particle::particle ALIAS particle)
 
@@ -67,6 +69,11 @@ endif()
 option(PARTICLE_ENABLE_DOCS "Generate library documentation" ON)
 if(PARTICLE_ENABLE_DOCS)
   include(ParticleGenerateDocs)
+endif()
+
+option(PARTICLE_ENABLE_SIMULATIONS "Build example simulations" ON)
+if(PARTICLE_ENABLE_SIMULATIONS)
+  add_subdirectory(simulations)
 endif()
 
 option(PARTICLE_ENABLE_TESTS "Build unit tests and test harnesses" ON)
