@@ -8,7 +8,7 @@
   </title>
   
     
-      <meta property='og:description' content />
+      <meta property='og:description' content="Particle is a work in progress. Stay tuned for updates! In the meantime, check out the project's visionthe project's vision." />
       <meta property='og:site_name' content='Particle XR' />
       <meta property='og:image' content />
       <meta property='og:type' content='website' />
@@ -22,37 +22,65 @@
 <script src='https://cdn.jsdelivr.net/combine/npm/prismjs@1.23.0/prism.min.js,npm/prismjs@1.23.0/plugins/autoloader/prism-autoloader.min.js'></script>
 
   
-  <link href='tailwind.css?instanceId=9b04d104-8ae8-411a-a2c9-a7622227add1' rel='stylesheet' type='text/css' />
+  <link href='tailwind.css?instanceId=364c001b-ae75-4bc6-9199-605ff60fa12f' rel='stylesheet' type='text/css' />
 
-  <!-- Heist error element -->
-  <style type='text/css'>
+  <style>
+    /* Heist error element */
     strong.error {
       color: lightcoral;
       font-size: 90%;
       font-family: monospace;
     }
+
+    /* External link icon */
+    a[data-linkicon]:not([data-linkicon=""]):not([data-linkicon="none"])::after {
+      /* filter converts black to rgb(156,163,175) */
+      filter: invert(71%) sepia(3%) saturate(904%) hue-rotate(179deg) brightness(92%) contrast(87%);
+      margin-left: 1px;
+    }
+
+    a[data-linkicon]:not([data-linkicon=""]):not([data-linkicon="none"]):hover::after {
+      /* filter converts black to  rgb(175,85,99) */
+      filter: invert(32%) sepia(10%) saturate(834%) hue-rotate(176deg) brightness(92%) contrast(88%);
+    }
+
+    a[data-linkicon=""]::after {
+      content: ""
+    }
+
+    a[data-linkicon=none]::after {
+      content: ""
+    }
+
+    a[data-linkicon="external"]::after {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='1em' fill='none' viewBox='0 0 24 24' stroke='black' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M10 6H6a2 2 0 00-2 2v10a2 2 0 002 2h10a2 2 0 002-2v-4M14 4h6m0 0v6m0-6L10 14' /%3E%3C/svg%3E");
+    }
+
+    a[data-linkicon="external"][href^="mailto:"]::after {
+      content: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' height='1em' fill='none' viewBox='0 0 24 24' stroke='black' stroke-width='2'%3E%3Cpath stroke-linecap='round' stroke-linejoin='round' d='M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z' /%3E%3C/svg%3E");
+    }
   </style>
-  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
+  <!-- What goes in this file will appear on near the end of <head>--><link rel='preload' href='_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf' as='font' type='font/ttf' crossorigin />
 
 <style>
   @font-face {
-    font-family: 'MavenPro';
-    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf */
-    src: url(_emanote-static/fonts/Maven_Pro/MavenPro-VariableFont_wght.ttf) format("truetype");
+    font-family: 'WorkSans';
+    /* FIXME: This ought to be: ${ema:emanoteStaticLayerUrl}/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf */
+    src: url(_emanote-static/fonts/Work_Sans/WorkSans-VariableFont_wght.ttf) format("truetype");
     font-display: swap;
   }
 
   body {
-    font-family: 'MavenPro', sans-serif;
-    /* font-variation-settings: 'wght'300; */
+    font-family: 'WorkSans', sans-serif;
+    font-variation-settings: 'wght' 350;
   }
 
   a.mavenLinkBold {
-    font-variation-settings: 'wght'500;
+    font-variation-settings: 'wght' 400;
   }
 
   strong {
-    font-variation-settings: 'wght'500;
+    font-variation-settings: 'wght' 500;
   }
 
   h1,
@@ -63,11 +91,88 @@
   h6,
   header,
   .header-font {
-    font-family: 'MavenPro', sans-serif;
+    font-family: 'WorkSans', sans-serif;
+  }
+
+  h1 {
+    font-variation-settings: 'wght' 500;
+  }
+
+  h2 {
+    font-variation-settings: 'wght' 400;
+  }
+
+  h3 {
+    font-variation-settings: 'wght' 300;
   }
 </style>
 
+
   <head-main></head-main>
+  <link rel='stylesheet' href='_emanote-static/stork/flat.css' />
+<!-- Custom Stork-search styling for Emanote -->
+<style>
+  #stork-search-container {
+    z-index: 1000;
+    background-color: rgb(15 23 42/.8);
+  }
+
+  .stork-overflow-hidden-important {
+    overflow: hidden !important;
+  }
+</style>
+
+
+<script src='_emanote-static/stork/stork.js'></script>
+
+  
+    <script data-emanote-base-url='/particle/'>
+      window.emanote = {};
+      window.emanote.stork = {
+        searchShown: false,
+        toggleSearch: function () {
+          document.getElementById('stork-search-container').classList.toggle('hidden');
+          window.emanote.stork.searchShown = document.body.classList.toggle('stork-overflow-hidden-important');
+          if (window.emanote.stork.searchShown) {
+            document.getElementById('stork-search-input').focus();
+          }
+        },
+        clearSearch: function () {
+          document.getElementById('stork-search-container').classList.add('hidden');
+          document.body.classList.remove('stork-overflow-hidden-important');
+          window.emanote.stork.searchShown = false;
+        },
+
+        init: function () {
+          const indexName = 'emanote-search'; // used to match input[data-stork] attribute value
+          const baseUrl = document.currentScript.getAttribute('data-emanote-base-url') || '/';
+          const indexUrl = baseUrl + '-/stork.st';
+          if (document.readyState !== 'complete') {
+            window.addEventListener('load', function () {
+              stork.initialize(baseUrl + '_emanote-static/stork/stork.wasm');
+              stork.register(indexName, indexUrl);
+            });
+
+            document.addEventListener('keydown', event => {
+              if (window.emanote.stork.searchShown && event.key === 'Escape') {
+                window.emanote.stork.clearSearch();
+                event.preventDefault();
+              } else if ((event.key == 'k' || event.key == 'K') && (event.ctrlKey || event.metaKey)) {
+                window.emanote.stork.toggleSearch();
+                event.preventDefault();
+              }
+            });
+          } else {
+            // Override existing on Ema's hot-reload
+            stork.register(indexName, indexUrl, { forceOverwrite: true });
+          }
+        }
+      };
+
+      window.emanote.stork.init();
+    </script>
+  
+
 </head>
 
 <!-- DoNotFormat -->
@@ -83,13 +188,48 @@
         <h1 class='pb-2 mt-2 mb-2 text-6xl text-center'>
           Index
         </h1>
-        <div class='flex justify-center items-center mb-2'>
-  <a target='_blank' class='italic underline' href='https://github.com/srid/emanote/discussions/50'>Experimental
-    feature</a> !
-</div>
         <div class='pb-2 mx-auto my-4 lg:max-w-screen-md '>
           
     <div class='pt-1 pb-2 pl-4 bg-gray-200'>
+      
+        <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Emergence' href='emergence.html'>
+      Emergence
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
       
         <!-- Variable bindings for this tree-->
   
@@ -115,7 +255,7 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Releases' href='releases'>
+    <a class='font-bold hover:underline truncate' title='Releases' href='releases.html'>
       Releases
     </a>
     
@@ -151,7 +291,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='v0.crap' href='releases/v0.crap'>
+    <a class='hover:underline truncate' title='v0.crap' href='releases/v0.crap.html'>
       v0.crap
     </a>
     
@@ -193,7 +333,7 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Tenets' href='tenets'>
+    <a class='font-bold hover:underline truncate' title='Tenets' href='tenets.html'>
       Tenets
     </a>
     
@@ -229,7 +369,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Totally and completely open' href='tenets/open'>
+    <a class='hover:underline truncate' title='Totally and completely open' href='tenets/open.html'>
       Totally and completely open
     </a>
     
@@ -271,7 +411,46 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Y Combinator' href='ycombinator'>
+    <a class='hover:underline truncate' title='Time' href='time.html'>
+      Time
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+      
+        <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Y Combinator' href='ycombinator.html'>
       Y Combinator
     </a>
     
@@ -310,7 +489,7 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Vision' href='vision'>
+    <a class='font-bold hover:underline truncate' title='Vision' href='vision.html'>
       Vision
     </a>
     
@@ -346,7 +525,7 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Engine' href='vision/engine'>
+    <a class='font-bold hover:underline truncate' title='Engine' href='vision/engine.html'>
       Engine
     </a>
     
@@ -382,7 +561,46 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Decisions, and how they affect the world' href='vision/engine/decisions'>
+    <a class='hover:underline truncate' title='Particle chain' href='vision/engine/chain.html'>
+      Particle chain
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Decisions, and how they affect the world' href='vision/engine/decisions.html'>
       Decisions, and how they affect the world
     </a>
     
@@ -421,124 +639,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Dynamic Semantics' href='vision/engine/semantics'>
-      Dynamic Semantics
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Equations' href='vision/engine/equations'>
-      Equations
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Genesis state' href='vision/engine/genesis'>
-      Genesis state
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Particle Density' href='vision/engine/density'>
+    <a class='hover:underline truncate' title='Particle Density' href='vision/engine/density.html'>
       Particle Density
     </a>
     
@@ -577,8 +678,8 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Particle Space' href='vision/engine/space'>
-      Particle Space
+    <a class='hover:underline truncate' title='Equations' href='vision/engine/equations.html'>
+      Equations
     </a>
     
       
@@ -616,8 +717,86 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Particle chain' href='vision/engine/chain'>
-      Particle chain
+    <a class='hover:underline truncate' title='Genesis state' href='vision/engine/genesis.html'>
+      Genesis state
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Dynamic Semantics' href='vision/engine/semantics.html'>
+      Dynamic Semantics
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='Particle Space' href='vision/engine/space.html'>
+      Particle Space
     </a>
     
       
@@ -658,7 +837,7 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Universe' href='vision/universe'>
+    <a class='font-bold hover:underline truncate' title='Universe' href='vision/universe.html'>
       Universe
     </a>
     
@@ -694,124 +873,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='A list of Worlds to build' href='vision/universe/worlds'>
-      A list of Worlds to build
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Customizable HUD' href='vision/universe/hud'>
-      Customizable HUD
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='Hosting your own Simulation' href='vision/universe/hosting'>
-      Hosting your own Simulation
-    </a>
-    
-      
-  </div>
-
-  <!-- Node's children forest, displayed only on active trees
-    TODO: Use <details> to toggle visibility?
-  -->
-  
-    
-  
-</div>
-    
-      <!-- Variable bindings for this tree-->
-  
-    
-      
-    
-    
-
-
-
-  
-
-
-<!-- Rendering of this tree -->
-<div class='pl-2'>
-  <!-- Node's rootLabel-->
-  <div class='flex items-center my-2 space-x-2 justify-left'>
-    
-    
-      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
-        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
-        </path>
-      </svg>
-    
-  
-    <a class='hover:underline truncate' title='In-world economics, using the Ethereum blockchain' href='vision/universe/economy'>
+    <a class='hover:underline truncate' title='In-world economics, using the Ethereum blockchain' href='vision/universe/economy.html'>
       In-world economics, using the Ethereum blockchain
     </a>
     
@@ -850,8 +912,8 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Sandbox' href='vision/universe/sandbox'>
-      Sandbox
+    <a class='hover:underline truncate' title='Hosting your own Simulation' href='vision/universe/hosting.html'>
+      Hosting your own Simulation
     </a>
     
       
@@ -889,7 +951,85 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='The "Feel of the World"' href='vision/universe/mechanics'>
+    <a class='hover:underline truncate' title='Customizable HUD' href='vision/universe/hud.html'>
+      Customizable HUD
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='The Binary Dimension' href='vision/universe/matrix.html'>
+      The Binary Dimension
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='The "Feel of the World"' href='vision/universe/mechanics.html'>
       The "Feel of the World"
     </a>
     
@@ -928,8 +1068,47 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='The Binary Dimension' href='vision/universe/matrix'>
-      The Binary Dimension
+    <a class='hover:underline truncate' title='Sandbox' href='vision/universe/sandbox.html'>
+      Sandbox
+    </a>
+    
+      
+  </div>
+
+  <!-- Node's children forest, displayed only on active trees
+    TODO: Use <details> to toggle visibility?
+  -->
+  
+    
+  
+</div>
+    
+      <!-- Variable bindings for this tree-->
+  
+    
+      
+    
+    
+
+
+
+  
+
+
+<!-- Rendering of this tree -->
+<div class='pl-2'>
+  <!-- Node's rootLabel-->
+  <div class='flex items-center my-2 space-x-2 justify-left'>
+    
+    
+      <svg class='w-4 h-4 flex-shrink-0 inline' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
+        <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 21h10a2 2 0 002-2V9.414a1 1 0 00-.293-.707l-5.414-5.414A1 1 0 0012.586 3H7a2 2 0 00-2 2v14a2 2 0 002 2z'>
+        </path>
+      </svg>
+    
+  
+    <a class='hover:underline truncate' title='A list of Worlds to build' href='vision/universe/worlds.html'>
+      A list of Worlds to build
     </a>
     
       
@@ -973,7 +1152,7 @@
       </svg>
       
   
-    <a class='font-bold hover:underline truncate' title='Research' href='research'>
+    <a class='font-bold hover:underline truncate' title='Research' href='research.html'>
       Research
     </a>
     
@@ -1009,7 +1188,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Ray tracing' href='research/ray-tracing'>
+    <a class='hover:underline truncate' title='Ray tracing' href='research/ray-tracing.html'>
       Ray tracing
     </a>
     
@@ -1048,7 +1227,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='Universal Scene Description' href='research/usd'>
+    <a class='hover:underline truncate' title='Universal Scene Description' href='research/usd.html'>
       Universal Scene Description
     </a>
     
@@ -1087,7 +1266,7 @@
       </svg>
     
   
-    <a class='hover:underline truncate' title='GPU' href='research/gpu'>
+    <a class='hover:underline truncate' title='GPU' href='research/gpu.html'>
       GPU
     </a>
     
@@ -1119,7 +1298,7 @@
     </a>
   </div>
   <div>
-    <a href='-/all' title='View Index'>
+    <a href='-/all.html' title='View Index'>
       <svg class='w-6 h-6 hover:text-blue-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M4 8V4m0 0h4M4 4l5 5m11-1V4m0 0h-4m4 0l-5 5M4 16v4m0 0h4m-4 0l5-5m11 5l-5-5m5 5v-4m0 4h-4'>
         </path>
@@ -1127,12 +1306,12 @@
     </a>
   </div>
   <div>
-    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.6.11.1'>
+    <a href='https://emanote.srid.ca' target='_blank' title='Generated by Emanote 0.8.1.10'>
       <img class='w-6 h-6 hover:text-blue-700' src='_emanote-static/emanote-logo.svg' />
     </a>
   </div>
   <div>
-    <a href='-/tags' title='View tags'>
+    <a href='-/tags.html' title='View tags'>
       <svg class='w-6 h-6 hover:text-blue-700' fill='none' stroke='currentColor' viewBox='0 0 24 24' xmlns='http://www.w3.org/2000/svg'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M7 7h.01M7 3h5c.512 0 1.024.195 1.414.586l7 7a2 2 0 010 2.828l-7 7a2 2 0 01-2.828 0l-7-7A1.994 1.994 0 013 12V7a4 4 0 014-4z'>
         </path>
@@ -1140,7 +1319,7 @@
     </a>
   </div>
   <div>
-    <a href='-/tasks' title='View tasks'>
+    <a href='-/tasks.html' title='View tasks'>
       <svg xmlns='http://www.w3.org/2000/svg' class='w-6 h-6 hover:text-blue-700' fill='none' viewBox='0 0 24 24' stroke='currentColor'>
         <path stroke-linecap='round' stroke-linejoin='round' stroke-width='2' d='M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z'></path>
       </svg>
@@ -1148,6 +1327,19 @@
   </div>
 </footer>
     </div>
+  
+  <div id='stork-search-container' class='hidden fixed w-screen h-screen inset-0 backdrop-filter backdrop-blur-sm'>
+  <div class='fixed w-screen h-screen inset-0' onclick='window.emanote.stork.toggleSearch()'></div>
+
+  <div class='container mx-auto p-10 mt-10'>
+    <div class='stork-wrapper-flat container mx-auto'>
+      <input id='stork-search-input' data-stork='emanote-search' class='stork-input' placeholder='Search (Ctrl+K) ...' />
+      <div data-stork='emanote-search-output' class='stork-output'></div>
+    </div>
+  </div>
+</div>
+  
+    
   
 </body>
 
